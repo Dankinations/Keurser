@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d1kyj2bl5ae31"]
 
-[ext_resource type="PackedScene" uid="uid://yha2of6qlrm0" path="res://prefabs/classes/Base.tscn" id="1_errlg"]
+[ext_resource type="PackedScene" uid="uid://yha2of6qlrm0" path="res://prefabs/player_classes/Base.tscn" id="1_errlg"]
 
 [node name="Test" type="Node2D" unique_id=813684770]
 

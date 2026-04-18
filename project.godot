@@ -22,7 +22,9 @@ Cam="*uid://baijixxb85ysj"
 [file_customization]
 
 folder_colors={
+"res://cards/": "pink",
 "res://prefabs/": "teal",
+"res://resources/": "purple",
 "res://scenes/": "red",
 "res://scripts/": "green",
 "res://sprites/": "yellow"
