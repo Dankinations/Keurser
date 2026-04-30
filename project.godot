@@ -17,7 +17,13 @@ config/icon="res://sprites/icon.svg"
 
 [autoload]
 
-Cam="*uid://baijixxb85ysj"
+CameraManager="*uid://baijixxb85ysj"
+GameManager="*uid://cheqwp87khsbf"
+RunManager="*uid://c8mayletlh620"
+
+[display]
+
+window/vsync/vsync_mode=0
 
 [file_customization]
 

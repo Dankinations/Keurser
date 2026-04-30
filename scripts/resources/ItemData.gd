@@ -5,3 +5,4 @@ class_name ItemData
 @export var description:String
 @export var texture:Texture2D
 @export var effect_scene:PackedScene
+@export var base_weight:float

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemLootTable" format=3 uid="uid://ppej5dpwp01m"]
+
+[ext_resource type="Script" uid="uid://d1xucrollpb3t" path="res://scripts/resources/ItemData.gd" id="1_5uie8"]
+[ext_resource type="Script" uid="uid://cgykbbr16jbsj" path="res://scripts/resources/ItemLootTable.gd" id="2_xf5da"]
+
+[resource]
+script = ExtResource("2_xf5da")
+pool = Array[ExtResource("1_5uie8")]([null])
+metadata/_custom_type_script = "uid://cgykbbr16jbsj"

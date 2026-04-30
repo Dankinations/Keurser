@@ -28,7 +28,7 @@ signal MoveDirChanged(old:Vector2,new:Vector2)
 
 # Main Changeable functions
 
-func movementTick(direction:Vector2,_echo:bool,dt:float):
+func movementTick(direction:Vector2,_echo:bool,_dt:float):
 	velocity = velocity.move_toward(direction * walkSpeed*100,walkSpeed*25)
 
 func healTick():
