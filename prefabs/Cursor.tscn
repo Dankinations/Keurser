@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://pm35hiv3byg5" path="res://sprites/Cursor.png" id="1_paf42"]
 [ext_resource type="Script" uid="uid://df5h2h0hfw3n1" path="res://scripts/Cursor.gd" id="2_romja"]
+[ext_resource type="Script" uid="uid://vkovjhtxqeiv" path="res://addons/trail_2d/trail_2d.gd" id="3_d7b4a"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_romja"]
 animations = [{
@@ -14,6 +15,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Curve" id="Curve_d7b4a"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.515, 2), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.4981276, 0.0, 0, 0]
+point_count = 3
+
 [node name="Cursor" type="AnimatedSprite2D" unique_id=1373030251]
 z_index = 4096
 texture_filter = 3
@@ -21,3 +27,8 @@ scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_romja")
 animation = &"new_animation"
 script = ExtResource("2_romja")
+
+[node name="Trail2D" type="Line2D" parent="." unique_id=1642749406]
+width_curve = SubResource("Curve_d7b4a")
+script = ExtResource("3_d7b4a")
+metadata/_custom_type_script = "uid://vkovjhtxqeiv"

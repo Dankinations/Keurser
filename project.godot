@@ -30,7 +30,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg", "res://addons/trail_2d/plugin.cfg")
 
 [file_customization]
 
@@ -78,7 +78,7 @@ click={
 2d_physics/layer_2="Enemies"
 2d_physics/layer_3="Map"
 
-[rendering]
+[physics]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+common/physics_ticks_per_second=240
+common/physics_interpolation=true
