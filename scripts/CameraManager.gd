@@ -7,18 +7,15 @@ var curr:Camera2D
 	set(new):
 		curr.rotation = new
 		rotation = new
-@export var smoothing:float :
-	set(new):
-		curr.position_smoothing_speed = new
-		smoothing = new
+var camera_snappiness = 10
+var offset = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	curr = Camera2D.new()
-	get_tree().current_scene.add_child(curr)
-	curr.position_smoothing_enabled = true
+	get_tree().current_scene.call_deferred("add_child",curr)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if target:
-		curr.position = target.position if target is Node2D else target
+		curr.global_position = curr.global_position.lerp(target.global_position+offset,1.0 - exp(-camera_snappiness * delta)) if target is Node2D else target
 	

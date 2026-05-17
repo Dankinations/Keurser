@@ -41,6 +41,7 @@ func _ready():
 	htimer.wait_time = 1; htimer.autostart = true; htimer.name = "Heal_Timer"
 	add_child(htimer)
 	htimer.timeout.connect(healTick)
+	GameManager.player = self
 	
 func _physics_process(delta: float) -> void:
 	var tempMoveDirection = Input.get_vector("move_left","move_right","move_up","move_down")

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://qba6aetsitds"]
+
+[ext_resource type="Texture2D" uid="uid://pm35hiv3byg5" path="res://sprites/Cursor.png" id="1_paf42"]
+[ext_resource type="Script" uid="uid://df5h2h0hfw3n1" path="res://scripts/Cursor.gd" id="2_romja"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_romja"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_paf42")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="Cursor" type="AnimatedSprite2D" unique_id=1373030251]
+z_index = 4096
+texture_filter = 3
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_romja")
+animation = &"new_animation"
+script = ExtResource("2_romja")

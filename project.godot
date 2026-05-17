@@ -20,10 +20,15 @@ config/icon="res://sprites/icon.svg"
 CameraManager="*uid://baijixxb85ysj"
 GameManager="*uid://cheqwp87khsbf"
 RunManager="*uid://c8mayletlh620"
+Cursor="*uid://qba6aetsitds"
 
 [display]
 
 window/vsync/vsync_mode=0
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
 [file_customization]
 
