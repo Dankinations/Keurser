@@ -4,31 +4,43 @@
 [ext_resource type="Script" uid="uid://df5h2h0hfw3n1" path="res://scripts/Cursor.gd" id="2_romja"]
 [ext_resource type="Script" uid="uid://vkovjhtxqeiv" path="res://addons/trail_2d/trail_2d.gd" id="3_d7b4a"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_romja"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_d7b4a"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_paf42")
 }],
 "loop": true,
-"name": &"new_animation",
+"name": &"default",
 "speed": 5.0
 }]
 
 [sub_resource type="Curve" id="Curve_d7b4a"]
-_limits = [0.0, 2.0, 0.0, 1.0]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.515, 2), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.4981276, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
 
-[node name="Cursor" type="AnimatedSprite2D" unique_id=1373030251]
+[sub_resource type="Gradient" id="Gradient_d7b4a"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Cursor" type="Control" unique_id=22298272]
+top_level = true
 z_index = 4096
 texture_filter = 3
+layout_mode = 3
+anchors_preset = 0
 scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_romja")
-animation = &"new_animation"
+
+[node name="Yep" type="AnimatedSprite2D" parent="." unique_id=1011895495]
+sprite_frames = SubResource("SpriteFrames_d7b4a")
 script = ExtResource("2_romja")
 
-[node name="Trail2D" type="Line2D" parent="." unique_id=1642749406]
+[node name="Middle" type="Line2D" parent="Yep" unique_id=821369376]
+z_index = 4095
+width = 5.0
 width_curve = SubResource("Curve_d7b4a")
+gradient = SubResource("Gradient_d7b4a")
+antialiased = true
 script = ExtResource("3_d7b4a")
+length = 50
+width_line = 15
 metadata/_custom_type_script = "uid://vkovjhtxqeiv"

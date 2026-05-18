@@ -1,26 +1,28 @@
 [gd_scene format=3 uid="uid://d1kyj2bl5ae31"]
 
-[ext_resource type="PackedScene" uid="uid://yha2of6qlrm0" path="res://prefabs/entities/players/Base.tscn" id="1_errlg"]
 [ext_resource type="Texture2D" uid="uid://pm35hiv3byg5" path="res://sprites/Cursor.png" id="2_bl13t"]
 [ext_resource type="Script" uid="uid://dxgb0rwir1t30" path="res://scripts/MiscEntity.gd" id="2_iyx0m"]
 [ext_resource type="Texture2D" uid="uid://kaaupxome8dy" path="res://sprites/icon.svg" id="4_74lek"]
+[ext_resource type="PackedScene" uid="uid://cuilfi6scusls" path="res://prefabs/entities/players/CloakGuy.tscn" id="4_j5jx5"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_74lek"]
+friction = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bl13t"]
 size = Vector2(104, 102)
 
 [node name="Test" type="Node2D" unique_id=813684770]
 
-[node name="Base" parent="." unique_id=1271573877 instance=ExtResource("1_errlg")]
-position = Vector2(564, 325)
-
 [node name="Cursor" type="RigidBody2D" parent="." unique_id=1764381798]
 position = Vector2(75, 334)
 collision_layer = 2
 collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_74lek")
 gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("2_iyx0m")
 health = 50.0
+pushable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor" unique_id=448712939]
 shape = SubResource("RectangleShape2D_bl13t")
@@ -38,3 +40,6 @@ z_index = -1
 position = Vector2(320.00003, 505.00003)
 scale = Vector2(6.4062505, 6.4062505)
 texture = ExtResource("4_74lek")
+
+[node name="Base" parent="." unique_id=1271573877 instance=ExtResource("4_j5jx5")]
+position = Vector2(532, 277)

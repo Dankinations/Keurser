@@ -21,6 +21,8 @@ class_name PlayerBase
 	set(new):
 		MoveDirChanged.emit(moveDirection,new)
 		moveDirection = new
+		
+var rawMove = Vector2.ZERO
 
 # Signals
 
@@ -30,7 +32,7 @@ signal MoveDirChanged(old:Vector2,new:Vector2)
 # Main Changeable functions
 
 func movementTick(direction:Vector2,_echo:bool,_dt:float):
-	velocity = velocity.move_toward(direction * walkSpeed*100,walkSpeed*25)
+	velocity = velocity.move_toward(direction * walkSpeed*100,walkSpeed*2.5)
 
 func healTick():
 	if health < maxHealth: health = clamp(health+vitality,0,maxHealth)
@@ -82,6 +84,7 @@ func _physics_process(delta: float) -> void:
 	var tempMoveDirection = Input.get_vector("move_left","move_right","move_up","move_down")
 	var echo = tempMoveDirection != moveDirection
 	moveDirection = tempMoveDirection
+	rawMove = rawMove.lerp(moveDirection,1.0-exp(-walkSpeed*25*delta))
 	movementTick(moveDirection,echo,delta)
 	move_and_slide()
 	
@@ -89,5 +92,5 @@ func _physics_process(delta: float) -> void:
 	for i in collisions:
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
-		if "pushable" in collider and collider is RigidBody2D:
+		if "pushable" in collider and collider is RigidBody2D and collider.pushable == true:
 			collider.apply_central_impulse(-collision.get_normal()*walkSpeed)
