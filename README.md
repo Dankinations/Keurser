@@ -1,5 +1,5 @@
 # Keurser
-Simple rogue-lite game based on The Binding of Isaac!
+Simple rogue-lite game inspired The Binding of Isaac, Rain World (and ultrakill kinda)!
 
 https://github.com/user-attachments/assets/3044478c-e2e4-4350-ba1b-202ed8990ec6
 
