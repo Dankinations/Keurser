@@ -41,6 +41,6 @@ width_curve = SubResource("Curve_d7b4a")
 gradient = SubResource("Gradient_d7b4a")
 antialiased = true
 script = ExtResource("3_d7b4a")
-length = 50
+length = 25
 width_line = 15
 metadata/_custom_type_script = "uid://vkovjhtxqeiv"

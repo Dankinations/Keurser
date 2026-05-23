@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://yha2of6qlrm0"]
 
 [ext_resource type="Texture2D" uid="uid://kaaupxome8dy" path="res://sprites/icon.svg" id="1_lefjg"]
-[ext_resource type="Script" uid="uid://b76snlgs7i24q" path="res://scripts/player_classes/PlayerBase.gd" id="1_vgmfd"]
+[ext_resource type="Script" uid="uid://b76snlgs7i24q" path="res://scripts/EntityBase.gd" id="1_vgmfd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i7fg7"]
 radius = 29.5
 height = 107.0
 
 [node name="Base" type="CharacterBody2D" unique_id=1271573877]
+y_sort_enabled = true
 collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_vgmfd")

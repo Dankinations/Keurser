@@ -1,19 +1,17 @@
-class_name MiscEntity
-extends RigidBody2D
+class_name MiscEntity extends EntityBase
 
 @export var friction: float = 2
-@export var health: float = 1 : 
-	set(new):
-		if health > highest_hp: highest_hp = health
-		health = max(new,0)
-		if new > highest_hp: highest_hp = new
-		if !is_node_ready(): return
-		if health <= 0: die()
-var highest_hp = health
 @export var pushable:bool = false
 
-func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	state.linear_velocity = state.linear_velocity.lerp(Vector2.ZERO,1.0 - exp(-friction*state.step))
+func _ready():
+	HealthChanged.connect(func(_old,new):
+		if new <= 0:
+			die()
+	)
+
+func _physics_process(_delta: float) -> void:
+	velocity = velocity.move_toward(Vector2.ZERO,friction)
+	move_and_slide()
 
 func die():
 	queue_free()

@@ -1,12 +1,11 @@
 [gd_scene format=3 uid="uid://cuilfi6scusls"]
 
-[ext_resource type="Script" uid="uid://d0mucb06w3bha" path="res://scripts/player_classes/cloak_guy.gd" id="1_df4ff"]
+[ext_resource type="Script" uid="uid://d0mucb06w3bha" path="res://scripts/player_classes/PlayerCloak.gd" id="1_df4ff"]
 [ext_resource type="Texture2D" uid="uid://cfftvxwbsbvq1" path="res://sprites/entities/player/Cloakguy/CloakguyHead.png" id="2_df4ff"]
 [ext_resource type="Texture2D" uid="uid://bxwop4do2t182" path="res://sprites/entities/player/Cloakguy/CloakguyTorso.png" id="3_su6ab"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i7fg7"]
-radius = 29.5
-height = 107.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_df4ff"]
+radius = 22.321514
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fg3ic"]
 atlas = ExtResource("3_su6ab")
@@ -81,35 +80,34 @@ animations = [{
 }]
 
 [node name="Cloaky" type="CharacterBody2D" unique_id=1271573877]
+y_sort_enabled = true
 collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_df4ff")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=635213416]
-position = Vector2(0, 48.5)
+position = Vector2(0, -0.5)
 rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_i7fg7")
+shape = SubResource("CircleShape2D_df4ff")
 
 [node name="TorsoBone" type="Marker2D" parent="." unique_id=875373055]
-position = Vector2(0, -23)
+position = Vector2(0, -72)
 
 [node name="Torso" type="AnimatedSprite2D" parent="TorsoBone" unique_id=1676440952]
-z_index = 4
 texture_filter = 3
 position = Vector2(0, 23)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_5g75v")
 autoplay = "default"
-frame_progress = 0.8942292
+frame_progress = 0.0090200575
 
 [node name="HeadBone" type="Marker2D" parent="." unique_id=310270048]
-position = Vector2(0, -21)
+position = Vector2(0, -70)
 
 [node name="Head" type="AnimatedSprite2D" parent="HeadBone" unique_id=1776868967]
-z_index = 5
 texture_filter = 3
 position = Vector2(0, 23)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_4wdey")
 autoplay = "default"
-frame_progress = 0.3802393
+frame_progress = 0.4950314

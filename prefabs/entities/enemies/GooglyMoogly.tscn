@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://8sptloqnevpd"]
+
+[ext_resource type="Texture2D" uid="uid://kaaupxome8dy" path="res://sprites/icon.svg" id="2_5oiqv"]
+
+[sub_resource type="GDScript" id="GDScript_nmwgv"]
+resource_name = "Chase"
+script/source = "extends EntityBase
+
+func _ready():
+	HealthChanged.connect(func(_old,new):
+		$Label.text = \"%d/%d HP\" % [new, maxHealth]
+		if new <= 0:
+			die()
+		pass)
+
+func _physics_process(delta: float) -> void:
+	if GameManager.player:
+		var tempMoveDirection = (GameManager.player.global_position-global_position).normalized()
+		moveDirection = tempMoveDirection
+		rawMove = rawMove.move_toward(moveDirection,walkSpeed*25)
+	
+	super(delta)
+
+func die():
+	queue_free()
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ccxrg"]
+radius = 69.0
+height = 146.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmwgv"]
+size = Vector2(121.99999, 118.00001)
+
+[node name="GooglyMoogly" type="CharacterBody2D" unique_id=700230315]
+y_sort_enabled = true
+motion_mode = 1
+script = SubResource("GDScript_nmwgv")
+vitality = 0.0
+metadata/_custom_type_script = "uid://b76snlgs7i24q"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1185015571]
+texture = ExtResource("2_5oiqv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2082045167]
+position = Vector2(0, 1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_ccxrg")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=1389218786]
+points = PackedVector2Array(-35, -15, -10, -4)
+default_color = Color(0.2784314, 0.54901963, 0.7490196, 1)
+
+[node name="Line2D2" type="Line2D" parent="." unique_id=1635076007]
+position = Vector2(5, 3)
+points = PackedVector2Array(32, -15, 16, -10, 2, -4)
+default_color = Color(0.2784314, 0.54901963, 0.7490196, 1)
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1984142410]
+collision_layer = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox" unique_id=1222205324]
+position = Vector2(-0.9999976, -1.0000024)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_nmwgv")
+
+[node name="Label" type="Label" parent="." unique_id=300769388]
+offset_left = -45.0
+offset_top = 64.0
+offset_right = 43.0
+offset_bottom = 87.0
+text = "100/100 HP"
+horizontal_alignment = 1

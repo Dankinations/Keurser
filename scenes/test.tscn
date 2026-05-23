@@ -1,45 +1,134 @@
 [gd_scene format=3 uid="uid://d1kyj2bl5ae31"]
 
 [ext_resource type="Texture2D" uid="uid://pm35hiv3byg5" path="res://sprites/Cursor.png" id="2_bl13t"]
-[ext_resource type="Script" uid="uid://dxgb0rwir1t30" path="res://scripts/MiscEntity.gd" id="2_iyx0m"]
 [ext_resource type="Texture2D" uid="uid://kaaupxome8dy" path="res://sprites/icon.svg" id="4_74lek"]
 [ext_resource type="PackedScene" uid="uid://cuilfi6scusls" path="res://prefabs/entities/players/CloakGuy.tscn" id="4_j5jx5"]
+[ext_resource type="Script" uid="uid://dtgeevgo5r4cu" path="res://scripts/HitChecker.gd" id="5_j5jx5"]
+[ext_resource type="PackedScene" uid="uid://8sptloqnevpd" path="res://prefabs/entities/enemies/GooglyMoogly.tscn" id="5_lpvoh"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_74lek"]
-friction = 0.0
+[sub_resource type="GDScript" id="GDScript_74lek"]
+resource_name = "Misc Entiy Test"
+script/source = "extends MiscEntity
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bl13t"]
-size = Vector2(104, 102)
+#Health displya
+
+func _ready():
+	super()
+	HealthChanged.connect(func(_old,new):
+		$HP.text = \"%d/%d HP\" % [new, maxHealth]
+		$Label.text = \"ow :c\"
+		if new <= 0:
+			get_node(\"../SpawnEnemyTimer\").start()
+		)
+		
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j5jx5"]
+radius = 13.341664
+
+[sub_resource type="LabelSettings" id="LabelSettings_j5jx5"]
+font_size = 60
+
+[sub_resource type="GDScript" id="GDScript_j5jx5"]
+resource_name = "TimerSpawn"
+script/source = "extends Timer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_timeout() -> void:
+	var new:EntityBase = preload(\"res://prefabs/entities/enemies/GooglyMoogly.tscn\").instantiate()
+	new.walkSpeed /= 2
+	owner.add_child(new)
+"
 
 [node name="Test" type="Node2D" unique_id=813684770]
-
-[node name="Cursor" type="RigidBody2D" parent="." unique_id=1764381798]
-position = Vector2(75, 334)
-collision_layer = 2
-collision_mask = 7
-physics_material_override = SubResource("PhysicsMaterial_74lek")
-gravity_scale = 0.0
-lock_rotation = true
-script = ExtResource("2_iyx0m")
-health = 50.0
-pushable = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor" unique_id=448712939]
-shape = SubResource("RectangleShape2D_bl13t")
-
-[node name="Visuals" type="CanvasGroup" parent="Cursor" unique_id=1732417554]
-position = Vector2(-75, -334)
-
-[node name="Sprite2D" type="Sprite2D" parent="Cursor/Visuals" unique_id=960898452]
-position = Vector2(75, 334)
-scale = Vector2(3.40625, 3.40625)
-texture = ExtResource("2_bl13t")
+y_sort_enabled = true
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=1489913335]
-z_index = -1
+z_index = -20
 position = Vector2(320.00003, 505.00003)
 scale = Vector2(6.4062505, 6.4062505)
 texture = ExtResource("4_74lek")
 
 [node name="Base" parent="." unique_id=1271573877 instance=ExtResource("4_j5jx5")]
 position = Vector2(532, 277)
+
+[node name="HitChecker" type="Node2D" parent="." unique_id=367746891]
+editor_description = "Checks for hits stuff"
+script = ExtResource("5_j5jx5")
+texture = ExtResource("2_bl13t")
+metadata/_custom_type_script = "uid://dtgeevgo5r4cu"
+
+[node name="MiscEntity" type="CharacterBody2D" parent="." unique_id=93938543]
+scale = Vector2(3, 3)
+collision_layer = 2
+collision_mask = 3
+script = SubResource("GDScript_74lek")
+pushable = true
+metadata/_custom_type_script = "uid://c6wgudjqqfxju"
+
+[node name="Sprite2D" type="Sprite2D" parent="MiscEntity" unique_id=746936680]
+texture_filter = 1
+texture = ExtResource("2_bl13t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MiscEntity" unique_id=2006364469]
+shape = SubResource("CircleShape2D_j5jx5")
+
+[node name="Hurtbox" type="Area2D" parent="MiscEntity" unique_id=55190049]
+collision_layer = 2
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="MiscEntity/Hurtbox" unique_id=1792877983]
+shape = SubResource("CircleShape2D_j5jx5")
+
+[node name="Label" type="Label" parent="MiscEntity" unique_id=1483268492]
+offset_left = -46.333336
+offset_top = -35.666668
+offset_right = 781.6667
+offset_bottom = 133.33333
+scale = Vector2(0.125, 0.125)
+text = "Hi im friendly i cant hurt you
+Push me
+
+
+
+
+Killing me also starts spawning enemies :)"
+label_settings = SubResource("LabelSettings_j5jx5")
+
+[node name="HP" type="Label" parent="MiscEntity" unique_id=2041095892]
+offset_left = -19.333332
+offset_top = 16.0
+offset_right = 291.66666
+offset_bottom = 99.0
+scale = Vector2(0.125, 0.125)
+text = "100/100HP"
+label_settings = SubResource("LabelSettings_j5jx5")
+horizontal_alignment = 1
+
+[node name="SpawnEnemyTimer" type="Timer" parent="." unique_id=603499479]
+script = SubResource("GDScript_j5jx5")
+
+[node name="Label2" type="Label" parent="." unique_id=3415001]
+offset_left = 328.0
+offset_top = -65.0
+offset_right = 1156.0
+offset_bottom = 104.0
+scale = Vector2(0.25, 0.25)
+text = "Click to shoot
+WASD to move"
+label_settings = SubResource("LabelSettings_j5jx5")
+
+[node name="GooglyMoogly" parent="." unique_id=700230315 instance=ExtResource("5_lpvoh")]
+position = Vector2(-367, 256)
+walkSpeed = 2.5
+
+[connection signal="timeout" from="SpawnEnemyTimer" to="SpawnEnemyTimer" method="_on_timeout"]
