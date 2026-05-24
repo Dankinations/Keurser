@@ -13,6 +13,7 @@ config_version=5
 config/name="RogueLite"
 run/main_scene="uid://d1kyj2bl5ae31"
 config/features=PackedStringArray("4.6")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://sprites/icon.svg"
 
 [autoload]
@@ -82,3 +83,9 @@ click={
 
 common/physics_ticks_per_second=120
 common/physics_interpolation=true
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.10582722, 0.11450107, 0.13902676, 1)

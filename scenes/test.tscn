@@ -60,7 +60,7 @@ scale = Vector2(6.4062505, 6.4062505)
 texture = ExtResource("4_74lek")
 
 [node name="Base" parent="." unique_id=1271573877 instance=ExtResource("4_j5jx5")]
-position = Vector2(532, 277)
+position = Vector2(526, 297)
 
 [node name="HitChecker" type="Node2D" parent="." unique_id=367746891]
 editor_description = "Checks for hits stuff"
